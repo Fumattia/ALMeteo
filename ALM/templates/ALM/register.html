@@ -1,0 +1,65 @@
+{% extends 'ALM/common3.html' %}
+
+{% block content %}
+    <div class="container" style="width: 40rem;">
+        <form action="{% url 'ALM:user_register' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-20 col-md-offset-20">
+                <div class="container text-center panel panel-default">
+                    <div class="container text-center panel-heading my-3"><h3>Registrati</h3></div>
+                    <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+                       
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.username.id_for_label }}" class="col-md-4 control-label text-right">Username<span class="text-red">*</span>:</label>
+                            <div class="col-md-15">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.email.id_for_label }}" class="col-md-4 control-label text-right">Email<span class="text-red">*</span>:</label>
+                            <div class="col-md-15">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.password.id_for_label }}" class="col-md-4 control-label text-right">Password<span class="text-red">*</span>:</label>
+                            <div class="col-md-15">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.password_repeat.id_for_label }}" class="col-md-4 control-label text-right">Conferma password:</label>
+                            <div class="col-md-15">
+                                {{ form.password_repeat }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.first_name.id_for_label }}" class="col-md-4 control-label text-right">Nome:</label>
+                            <div class="col-md-15">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.last_name.id_for_label }}" class="col-md-4 control-label text-right">Cognome:</label>
+                            <div class="col-md-15">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="form-group clearfix my-3">
+                            <label for="{{ form.phone_number.id_for_label }}" class="col-md-4 control-label text-right">Numero di telefono:</label>
+                            <div class="col-md-15">
+                                {{ form.phone_number }}
+                            </div>
+                        </div>
+                        <div class="col-md-15 col-md-offset-4 my-3">
+                            <input type="submit" value="Registrati" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
