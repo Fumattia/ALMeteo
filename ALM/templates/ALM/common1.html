@@ -22,7 +22,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'ALM:home'%}">
           {% load static %}
           <img src="{% static 'ALM/logo.png'%}" alt="" width="40" height="40" class="d-inline-block align-text-top rounded">
         </a>
@@ -35,17 +35,17 @@
               <a class="nav-link" href="#">CHI SIAMO</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">IL NOSTRO PRODOTTO</a>
+              <a class="nav-link" href="#">IL NOSTRO SERVIZIO</a>
             </li>
             <li class="nav-item">
               <a class="nav-link">SOSTIENICI</a>
             </li>
           </ul>
-          <form class="d-flex" action="{% url 'ALM:home' %}" method="post">
+        </div>
+        <form class="d-flex" action="{% url 'ALM:home' %}" method="post">
             <a href="{% url 'ALM:login'%}" type="button" class="btn btn-outline-light" type="submit">Accedi</a>
             <a href="{% url 'ALM:user_register'%}" type="button" class="btn btn-outline-light " type="submit">Registrati</a>
-          </form>
-        </div>
+        </form>
       </div>
     </nav>
     {% block content %}

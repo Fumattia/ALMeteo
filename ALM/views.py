@@ -28,7 +28,7 @@ def user_login(request):
             # Save session as cookie to login the user
             login(request, user)
             # Success, now let's login the user.
-            return render(request, 'ALM/area_personale.html')
+            return tempo_reale(request)
         else:
             # Incorrect credentials, let's throw an error to the screen.
             return render(request, 'ALM/login.html',
@@ -51,11 +51,6 @@ def user_register(request):
                 return render(request, template, {
                     'form': form,
                     'error_message': 'Username already exists.'
-                })
-            elif User.objects.filter(email=form.cleaned_data['email']).exists():
-                return render(request, template, {
-                    'form': form,
-                    'error_message': 'Email already exists.'
                 })
             elif form.cleaned_data['password'] != form.cleaned_data['password_repeat']:
                 return render(request, template, {
