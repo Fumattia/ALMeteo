@@ -29,16 +29,16 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
           <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">HOME</a>
+              <a class="nav-link" aria-current="page" href="{% url 'ALM:home'%}">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">CHI SIAMO</a>
+              <a class="nav-link" href="{% url 'ALM:chi_siamo'%}">CHI SIAMO</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">IL NOSTRO SERVIZIO</a>
+              <a class="nav-link" href="{% url 'ALM:il_nostro_servizio'%}">IL NOSTRO SERVIZIO</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link">SOSTIENICI</a>
+              <a class="nav-link" href="{% url 'ALM:sostienici'%}">SOSTIENICI</a>
             </li>
           </ul>
         </div>

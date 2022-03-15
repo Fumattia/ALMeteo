@@ -11,11 +11,18 @@ def tempo_reale(request):
     temperatura = 20
     return render(request, 'ALM/area_personale.html', {'text': prova, 'temp': temperatura})
 
-
 def home(request):
     prova = "ciao"
     return render(request, 'ALM/home.html', {'text': prova})
 
+def chi_siamo(request):
+    return render(request, 'ALM/chi_siamo.html')
+
+def il_nostro_servizio(request):
+    return render(request, 'ALM/il_nostro_servizio.html')
+
+def sostienici(request):
+    return render(request, 'ALM/sostienici.html')
 
 def user_login(request):
     if request.method == 'POST':
