@@ -14,10 +14,10 @@
   <body>
     <div class="container my-3 text-center">
       <h1 class="display-1">ALMETEO</h1>
-      <h1 class="display-6">Stazioni meteo accessibili a tutti</h1>
+      <h1 class="display-6">Stazioni meteo per tutti</h1>
     </div>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="position: sticky; top: -1px; z-index:2;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary" style="position: sticky; top: -1px; z-index:2;">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
           <img src="{% static 'ALM/logo.png'%}" alt="" width="40" height="40" class="d-inline-block align-text-top rounded">
         </a>
         <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="{% url 'ALM:home'%}">HOME</a>
             </li>
