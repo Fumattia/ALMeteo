@@ -6,11 +6,6 @@ from .forms import RegisterForm
 
 
 # Create your views here.
-def tempo_reale(request):
-    prova = "ciao"
-    temperatura = 20
-    return render(request, 'ALM/area_personale.html', {'text': prova, 'temp': temperatura})
-
 def home(request):
     prova = "ciao"
     return render(request, 'ALM/home.html', {'text': prova})
@@ -24,6 +19,14 @@ def il_nostro_servizio(request):
 def sostienici(request):
     return render(request, 'ALM/sostienici.html')
 
+def area_personale(request):
+    return render(request, 'ALM/area_personale.html')
+
+def meteo_in_tempo_reale(request):
+    prova = "ciao"
+    temperatura = 20
+    return render(request, 'ALM/meteo_in_tempo_reale.html', {'text': prova, 'temp': temperatura})
+
 def user_login(request):
     if request.method == 'POST':
         # Process the request if posted data are available
@@ -35,7 +38,7 @@ def user_login(request):
             # Save session as cookie to login the user
             login(request, user)
             # Success, now let's login the user.
-            return tempo_reale(request)
+            return area_personale(request)
         else:
             # Incorrect credentials, let's throw an error to the screen.
             return render(request, 'ALM/login.html',
