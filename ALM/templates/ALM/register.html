@@ -1,7 +1,7 @@
 {% extends 'ALM/common3.html' %}
 
 {% block content %}
-    <div class="container" style="width: 40rem;">
+    <div class="container">
         <form action="{% url 'ALM:user_register' %}" method="post">
             {% csrf_token %}
             <div class="col-md-20 col-md-offset-20">

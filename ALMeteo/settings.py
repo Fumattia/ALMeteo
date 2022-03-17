@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mi)=h0%sdj3=%p8b3&t0mc29d=+b82m6h$7213&bm+w5g5kzmv
 # SECURITY WARNING: don't run with debug turned on in production!^^^
 DEBUG = True
 
-ALLOWED_HOSTS = ['almeteo.herokuapp.com']
+ALLOWED_HOSTS = ['almeteo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

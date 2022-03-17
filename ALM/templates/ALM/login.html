@@ -1,7 +1,7 @@
 {% extends 'ALM/common3.html' %}
 
 {% block content %}
-<div class="container my-5 mb-3 text-center" style="width: 40rem;">
+<div class="container my-5 mb-3 text-center">
     <form action="{% url 'ALM:login' %}" method="post">
         {% csrf_token %}
         <div class="col-md-20 col-md-offset-20">
