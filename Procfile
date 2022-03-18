@@ -1,1 +1,1 @@
-web: gunicorn ALMeteo.wsgi:app --log-file=-
+web: gunicorn ALMeteo.wsgi:app --log-file -
