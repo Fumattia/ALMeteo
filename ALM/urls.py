@@ -10,5 +10,6 @@ urlpatterns = [
     path('area-personale', views.area_personale, name='area_personale'),
     path('meteo-in-tempo-reale', views.meteo_in_tempo_reale, name='meteo_in_tempo_reale'),
     path('login', views.user_login, name='login'),
+    path('logout', views.logout, name='logout'),
     path('register', views.user_register, name='user_register'),
 ]

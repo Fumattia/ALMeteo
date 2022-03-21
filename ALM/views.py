@@ -7,8 +7,12 @@ from .forms import RegisterForm
 
 # Create your views here.
 def home(request):
-    prova = "ciao"
-    return render(request, 'ALM/home.html', {'text': prova})
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/home.html', {'user': username})
+    except:
+        return render(request, 'ALM/home.html')
+
 
 def chi_siamo(request):
     return render(request, 'ALM/chi_siamo.html')
@@ -20,7 +24,9 @@ def sostienici(request):
     return render(request, 'ALM/sostienici.html')
 
 def area_personale(request):
-    return render(request, 'ALM/area_personale.html')
+    username = request.session['user']
+    username = username.upper()
+    return render(request, 'ALM/area_personale.html', {'user': username})
 
 def meteo_in_tempo_reale(request):
     prova = "ciao"
@@ -36,6 +42,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             # Save session as cookie to login the user
+            request.session['user'] = username
             login(request, user)
             # Success, now let's login the user.
             return area_personale(request)
@@ -47,6 +54,12 @@ def user_login(request):
         # No post data availabe, let's just show the page to the user.
         return render(request, 'ALM/login.html')
 
+def logout(request):
+    try:
+        del request.session['user']
+    except:
+        return render(request, 'ALM/login.html')
+    return render(request, 'ALM/login.html')
 
 def user_register(request):
     # if this is a POST request we need to process the form data
