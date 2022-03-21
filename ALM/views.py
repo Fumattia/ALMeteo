@@ -9,19 +9,31 @@ from .forms import RegisterForm
 def home(request):
     try:
         username = request.session['user']
-        return render(request, 'ALM/home.html', {'user': username})
+        return render(request, 'ALM/home.html', {'username': username})
     except:
         return render(request, 'ALM/home.html')
 
 
 def chi_siamo(request):
-    return render(request, 'ALM/chi_siamo.html')
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/chi_siamo.html', {'username': username})
+    except:
+        return render(request, 'ALM/chi_siamo.html')
 
 def il_nostro_servizio(request):
-    return render(request, 'ALM/il_nostro_servizio.html')
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/il_nostro_servizio.html', {'username': username})
+    except:
+        return render(request, 'ALM/il_nostro_servizio.html')
 
 def sostienici(request):
-    return render(request, 'ALM/sostienici.html')
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/sostienici.html', {'username': username})
+    except:
+        return render(request, 'ALM/sostienici.html')
 
 def area_personale(request):
     username = request.session['user']
@@ -45,7 +57,7 @@ def user_login(request):
             request.session['user'] = username
             login(request, user)
             # Success, now let's login the user.
-            return area_personale(request)
+            return home(request)
         else:
             # Incorrect credentials, let's throw an error to the screen.
             return render(request, 'ALM/login.html',
