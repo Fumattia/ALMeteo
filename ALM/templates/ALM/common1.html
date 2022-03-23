@@ -43,7 +43,7 @@
           </ul>
         </div>
         {% if username %}
-        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex" style="--bs-scroll-height: 200px;">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ciao, {{ user }}
@@ -61,7 +61,7 @@
           <li></li>
         </ul>
         {% else %}
-        <form class="d-flex" action="{% url 'ALM:home' %}" method="post">
+        <form class="d-flex" >
             <a href="{% url 'ALM:login'%}" type="button" class="btn btn-outline-light" type="submit">Accedi</a>
             <a href="{% url 'ALM:user_register'%}" type="button" class="btn btn-outline-light " type="submit">Registrati</a>
         </form>

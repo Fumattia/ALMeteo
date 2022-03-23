@@ -70,8 +70,8 @@ def logout(request):
     try:
         del request.session['user']
     except:
-        return render(request, 'ALM/login.html')
-    return render(request, 'ALM/login.html')
+        return render(request, 'ALM/home.html')
+    return render(request, 'ALM/home.html')
 
 def user_register(request):
     # if this is a POST request we need to process the form data
