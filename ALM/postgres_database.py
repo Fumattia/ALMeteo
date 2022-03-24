@@ -11,17 +11,22 @@ def connect():
 
         print("connesso")
 
-        return conn.cursor()
+        return conn
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         return None
 
-def close(cursor):
+def nuovo_utente(conn, username, nome, cognome, email, numero):
+    cur = conn.cursor()
+    query = """INSERT INTO "public"."utenti" ("id_utente", "Nome", "Cognome", "Email", "Numero_cellulare") VALUES (%s, %s, %s, %s,%s)"""
+    elementi = (username, nome, cognome, email, numero)
+    cur.execute(query, elementi)
+    conn.commit()
+
+def close(conn):
+    cursor = conn.cursor()
     cursor.close()
     print("connessione chiusa")
 
-if __name__ == '__main__':
-    cur = connect()
-    close(cur)
 

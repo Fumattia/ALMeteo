@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .forms import RegisterForm
+from .postgres_database import *
 
 
 # Create your views here.
@@ -63,7 +64,7 @@ def user_login(request):
             return render(request, 'ALM/login.html',
                           {'error_message': 'Incorrect username and / or password.'})
     else:
-        # No post data availabe, let's just show the page to the user.
+        # No post data available, let's just show the page to the user.
         return render(request, 'ALM/login.html')
 
 def logout(request):
@@ -107,8 +108,13 @@ def user_register(request):
                 # Login the user
                 login(request, user)
 
+                #create user on postgresql database
+                conn = connect()
+                nuovo_utente(conn, form.cleaned_data['username'], form.cleaned_data['first_name'], form.cleaned_data['last_name'], form.cleaned_data['email'], form.cleaned_data['phone_number'])
+                close(conn)
+
                 # redirect to accounts page:
-                return HttpResponseRedirect('area-personale')
+                return user_login(request)
 
     # No post data availabe, let's just show the page.
     else:
