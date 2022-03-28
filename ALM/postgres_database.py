@@ -1,4 +1,5 @@
 import psycopg2
+import hashlib
 
 def connect():
     conn = None
@@ -17,12 +18,18 @@ def connect():
         print(error)
         return None
 
-def nuovo_utente(conn, username, nome, cognome, email, numero):
+def nuovo_utente(conn, username, password, nome, cognome, email, numero):
     cur = conn.cursor()
-    query = """INSERT INTO "public"."utenti" ("id_utente", "Nome", "Cognome", "Email", "Numero_cellulare") VALUES (%s, %s, %s, %s,%s)"""
-    elementi = (username, nome, cognome, email, numero)
+    password = hashlib.sha256(password.encode())
+    query = """INSERT INTO "public"."utenti" ("id_utente", "Nome", "Cognome", "Email", "Numero_cellulare", "password") VALUES (%s, %s, %s, %s,%s,%s)"""
+    elementi = (username, nome, cognome, email, numero, password.hexdigest())
     cur.execute(query, elementi)
     conn.commit()
+
+def logga(request, username, password):
+    conn = connect()
+    cur = conn.cursor()
+
 
 def close(conn):
     cursor = conn.cursor()

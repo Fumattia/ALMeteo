@@ -55,7 +55,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             # Save session as cookie to login the user
-            request.session['user'] = username
+            request.session['user'] = user
             login(request, user)
             # Success, now let's login the user.
             return home(request)
@@ -94,7 +94,7 @@ def user_register(request):
                     'error_message': 'Passwords do not match.'
                 })
             else:
-                # Create the userrr:
+                # Create the user:
                 user = User.objects.create_user(
                     form.cleaned_data['username'],
                     form.cleaned_data['email'],
@@ -110,7 +110,7 @@ def user_register(request):
 
                 #create user on postgresql database
                 conn = connect()
-                nuovo_utente(conn, form.cleaned_data['username'], form.cleaned_data['first_name'], form.cleaned_data['last_name'], form.cleaned_data['email'], form.cleaned_data['phone_number'])
+                nuovo_utente(conn, form.cleaned_data['username'], form.cleaned_data['password'], form.cleaned_data['first_name'], form.cleaned_data['last_name'], form.cleaned_data['email'], form.cleaned_data['phone_number'])
                 close(conn)
 
                 # redirect to accounts page:
