@@ -94,7 +94,7 @@ def user_register(request):
                     'error_message': 'Passwords do not match.'
                 })
             else:
-                # Create the user:
+                # Create the userrr:
                 user = User.objects.create_user(
                     form.cleaned_data['username'],
                     form.cleaned_data['email'],
