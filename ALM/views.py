@@ -55,7 +55,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             # Save session as cookie to login the user
-            request.session['user'] = user
+            request.session['user'] = username
             login(request, user)
             # Success, now let's login the user.
             return home(request)
@@ -105,9 +105,7 @@ def user_register(request):
                 user.phone_number = form.cleaned_data['phone_number']
                 user.save()
 
-                # Login the user
                 login(request, user)
-
                 #create user on postgresql database
                 conn = connect()
                 nuovo_utente(conn, form.cleaned_data['username'], form.cleaned_data['password'], form.cleaned_data['first_name'], form.cleaned_data['last_name'], form.cleaned_data['email'], form.cleaned_data['phone_number'])
