@@ -37,14 +37,45 @@ def sostienici(request):
         return render(request, 'ALM/sostienici.html')
 
 def area_personale(request):
-    username = request.session['user']
-    username = username.upper()
-    return render(request, 'ALM/area_personale.html', {'user': username})
+    try:
+        username = request.session['user']
+        username = username.upper()
+        print(username)
+        return render(request, 'ALM/area_personale.html', {'username': username})
+    except:
+        return render(request, 'ALM/area_personale.html')
 
 def meteo_in_tempo_reale(request):
-    prova = "ciao"
-    temperatura = 20
-    return render(request, 'ALM/meteo_in_tempo_reale.html', {'text': prova, 'temp': temperatura})
+    try:
+        username = request.session['user']
+        prova = "ciao"
+        temperatura = 20
+        return render(request, 'ALM/meteo_in_tempo_reale.html', {'text': prova, 'temp': temperatura, 'username': username})
+    except:
+        return render(request, 'ALM/meteo_in_tempo_reale.html')
+
+def storico_dati(request):
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/storico_dei_dati.html', {'username': username})
+    except:
+        return render(request, 'ALM/storico_dei_dati.html')
+
+def previsioni(request):
+    try:
+        username = request.session['user']
+        return render(request, 'ALM/previsioni.html', {'username': username})
+    except:
+        return render(request, 'ALM/previsioni.html')
+
+def gestione_account(request):
+    try:
+        username = request.session['user']
+        username = username.upper()
+        return render(request, 'ALM/gestisci_account.html', {'username': username})
+    except:
+        return render(request, 'ALM/gestisci_account.html')
+
 
 def user_login(request):
     if request.method == 'POST':

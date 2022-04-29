@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{% static 'ALM/logo16px.ico'%}" />
     <title>ALMETEO</title>
   </head>
-  <body class="bg-primary" style="--bs-bg-opacity: .3;">
+  <body class="bg-primary" style="--bs-bg-opacity: .2;">
     <div class="container my-3 text-center">
       <h1 class="display-1">ALMETEO<img src="{% static 'ALM/logo.png'%}" alt="LOGO" width="120" height="120" class="d-inline-block align-text-top  "></h1>
       <h1 class="display-6">Stazioni meteo per tutti</h1>
@@ -50,7 +50,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{% url 'ALM:area_personale'%}">Area personale</a></li>
-              <li><a class="dropdown-item" href="#">Gestisci account</a></li>
+              <li><a class="dropdown-item" href="{% url 'ALM:gestisci_account'%}">Gestisci account</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'ALM:logout'%}">Logout</a></li>
             </ul>

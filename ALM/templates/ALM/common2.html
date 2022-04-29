@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{% static 'ALM/logo16px.ico'%}" />
     <title>ALMETEO</title>
   </head>
-  <body class="bg-primary" style="--bs-bg-opacity: .3;">
+  <body class="bg-primary" style="--bs-bg-opacity: .2;">
     <!-- Titolo -->
     <div class="container my-3 text-center">
       <h1 class="display-1">ALMETEO<img src="{% static 'ALM/logo.png'%}" alt="LOGO" width="120" height="120" class="d-inline-block align-text-top  "></h1>
@@ -31,22 +31,43 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
           <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'ALM:area_personale'%}">HOME</a>
+              <a class="nav-link" href="{% url 'ALM:home'%}">HOME</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'ALM:meteo_in_tempo_reale'%}">METEO IN TEMPO REALE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">STORICO DEI DATI</a>
+              <a class="nav-link" aria-current="page" href="{% url 'ALM:storico_dei_dati'%}">STORICO DEI DATI</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#">PREVISIONI</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">MAPPA</a>
+              <a class="nav-link" href="{% url 'ALM:previsioni'%}">PREVISIONI</a>
             </li>
           </ul>
         </div>
+        {% if username %}
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex" style="--bs-scroll-height: 200px;">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Ciao, {{ user }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'ALM:area_personale'%}">Area personale</a></li>
+              <li><a class="dropdown-item" href="{% url 'ALM:gestisci_account'%}">Gestisci account</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'ALM:logout'%}">Logout</a></li>
+            </ul>
+          </li>
+          <li>
+            <img src="{% static 'ALM/logo.png'%}" alt="" width="40" height="40" class="d-inline-block align-text-top rounded">
+          </li>
+          <li></li>
+        </ul>
+        {% else %}
+        <form class="d-flex" >
+            <a href="{% url 'ALM:login'%}" type="button" class="btn btn-outline-light" type="submit">Accedi</a>
+            <a href="{% url 'ALM:user_register'%}" type="button" class="btn btn-outline-light " type="submit">Registrati</a>
+        </form>
+        {% endif %}
       </div>
     </nav>
     {% block content %}
