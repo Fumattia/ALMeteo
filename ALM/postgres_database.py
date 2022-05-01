@@ -5,10 +5,10 @@ def connect():
     conn = None
     try:
         conn = psycopg2.connect(
-            host="ec2-99-80-170-190.eu-west-1.compute.amazonaws.com",
-            database="dh8vdbsc8dest",
-            user="pnbyqwdjwinlmn",
-            password="78070ca130941b336a0a3bafe2cdca4b29137c1b453ba3352f9a74f98b14c560")
+            host="ec2-52-30-67-143.eu-west-1.compute.amazonaws.com",
+            database="df1l8bnnnf2krv",
+            user="mhiumfplohiocq",
+            password="f74dbfcf95cfd44699cc95756cc366c9fb9f95747dbeaf7692eb6f2b7f99d932")
 
         print("connesso")
 
