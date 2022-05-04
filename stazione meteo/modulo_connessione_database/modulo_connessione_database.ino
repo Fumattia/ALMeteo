@@ -35,14 +35,14 @@
 
 
 
-IPAddress PGIP(99,80,170,190);        // your PostgreSQL server IP
+IPAddress PGIP(52,30,67,143);        // your PostgreSQL server IP
 
 const char ssid[] = "Router";      //  your network SSID (name)
 const char pass[] = "Casa17fuma";      // your network password
 
-const char user[] = "pnbyqwdjwinlmn";     // your database user
-const char password[] = "78070ca130941b336a0a3bafe2cdca4b29137c1b453ba3352f9a74f98b14c560";   // your database password
-const char dbname[] = "dh8vdbsc8dest";         // your database name
+const char user[] = "mhiumfplohiocq";     // your database user
+const char password[] = "f74dbfcf95cfd44699cc95756cc366c9fb9f95747dbeaf7692eb6f2b7f99d932";   // your database password
+const char dbname[] = "df1l8bnnnf2krv";         // your database name
 
 int WiFiStatus;
 WiFiClient client;
@@ -113,11 +113,13 @@ void doPg(void)
             "utf8",
             5432);
         pg_status = 1;
+        Serial.println("ciao");
         return;
     }
 
     if (pg_status == 1) {
         rc = conn.status();
+        Serial.println(rc);
         if (rc == CONNECTION_BAD || rc == CONNECTION_NEEDED) {
             char *c=conn.getMessage();
             if (c) Serial.println(c);
