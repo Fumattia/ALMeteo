@@ -11,7 +11,7 @@
 
 
 
-const char* googleApiKey = "AIzaSyCT51ZUm-Z8nGJkwv-DGv09tbKjwsgZPAQ";
+const char* googleApiKey = "";
 WifiLocation location(googleApiKey);
 location_t loc = location.getGeoFromWiFi();
 
