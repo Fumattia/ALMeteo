@@ -16,6 +16,13 @@ Adafruit_BMP280 bme; // I2C
 
 
 
+<<<<<<< HEAD
+=======
+const char* googleApiKey = "";
+WifiLocation location(googleApiKey);
+location_t loc = location.getGeoFromWiFi();
+
+>>>>>>> 35862b35a68c004cff3e593d6d0e6c882c5f1a47
 DHT dht(DHTPIN, DHTTYPE);
 
 float temp;
