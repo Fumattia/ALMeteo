@@ -1,29 +1,33 @@
 #include <WiFiManager.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <WifiLocation.h>
 #include "DHT.h"
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BMP280.h>
 
-#define DHTPIN 4     // what digital pin the DHT22 is conected to
+#define DHTPIN 14     // what digital pin the DHT22 is conected to
 #define DHTTYPE DHT22   // there are multiple kinds of DHT sensors
 
 #define TRIGGER_PIN 0
+#define SEALEVELPRESSURE_HPA (1022.25)
+
+Adafruit_BMP280 bme; // I2C
 
 
-
-const char* googleApiKey = "AIzaSyCT51ZUm-Z8nGJkwv-DGv09tbKjwsgZPAQ";
-WifiLocation location(googleApiKey);
-location_t loc = location.getGeoFromWiFi();
 
 DHT dht(DHTPIN, DHTTYPE);
 
 float temp;
+float temp2;
 float hum;
-int pres = 23;
+float perc;
+float pres;
+float alt;
 int qaria = 34;
 int pioggia = 1;
 
-String sendtemp, sendhum, sendpres, sendqaria, sendpioggia, sendlat, sendlon, postData;
+String sendtemp, sendtemp2, sendhum, sendperc, sendpres, sendalt, sendqaria, sendpioggia, sendlat, sendlon, postData;
 String tabella = "Prova";
 
 unsigned long tempo;
@@ -70,20 +74,22 @@ void setup() {
     Serial.println("connected...yeey :)");
   }
   // setup location
-  
-
-  Serial.println("Location request data");
-  Serial.println(location.getSurroundingWiFiJson());
-  Serial.println("Latitude: " + String(loc.lat, 7));
-  Serial.println("Longitude: " + String(loc.lon, 7));
-  Serial.println("Accuracy: " + String(loc.accuracy));
+ 
 
   // setup temporizzazioni
   tempo=millis();
-  lettura_dati=millis()-600000;
+  lettura_dati=millis()-300000;
 
   // setup sensori
   dht.begin();
+  bool status;
+  // default settings
+  // (you can also pass in a Wire library object like &Wire2)
+  status = bme.begin(0x76);  
+  if (!status) {
+    Serial.println("Could not find a valid BMP280 sensor, check wiring!");
+    while (1);
+  }
 
   Serial.println("Device Started");
   Serial.println("-------------------------------------");
@@ -155,7 +161,11 @@ void post_data(String data)
 void sensori()
 {
   temp = dht.readTemperature();
+  temp2 = bme.readTemperature();
   hum = dht.readHumidity();
+  perc = dht.computeHeatIndex(temp, hum, false);
+  pres = bme.readPressure()/100.0F;
+  alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
   if (isnan(hum) || isnan(temp)) {
       Serial.println("Failed to read from DHT sensor!");
       temp = NULL;
@@ -171,16 +181,16 @@ void sensori()
 String misurazioni()
 {
   sendtemp = String(temp);  
+  sendtemp2 = String(temp2);  
   sendhum = String(hum); 
+  sendperc = String(perc);
   sendpres = String(pres); 
+  sendalt = String(alt);  
   sendqaria = String(qaria); 
   sendpioggia = String(pioggia);
-
-  sendlat = String(loc.lat, 7);
-  sendlon = String(loc.lon, 7);
   
    
-  return postData = "tabella=" + tabella + "&sendtemp=" + sendtemp + "&sendhum=" + sendhum + "&sendpres=" + sendpres + "&sendqaria=" + sendqaria + "&sendpioggia=" + sendpioggia;
+  return postData = "tabella=" + tabella + "&sendtemp=" + sendtemp + "&sendtemp2=" + sendtemp2 + "&sendhum=" + sendhum + "&sendperc=" + sendperc + "&sendpres=" + sendpres + "&sendalt=" + sendalt + "&sendqaria=" + sendqaria + "&sendpioggia=" + sendpioggia;
 }
 
 
@@ -189,7 +199,7 @@ void loop() {
   checkButton();
   // put your main code here, to run repeatedly:
   tempo=millis();
-  if (tempo>lettura_dati+600000)
+  if (tempo>lettura_dati+300000)
   { 
     sensori();
     String dati = misurazioni();
