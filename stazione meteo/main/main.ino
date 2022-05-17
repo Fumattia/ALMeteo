@@ -16,13 +16,6 @@ Adafruit_BMP280 bme; // I2C
 
 
 
-<<<<<<< HEAD
-=======
-const char* googleApiKey = "";
-WifiLocation location(googleApiKey);
-location_t loc = location.getGeoFromWiFi();
-
->>>>>>> 35862b35a68c004cff3e593d6d0e6c882c5f1a47
 DHT dht(DHTPIN, DHTTYPE);
 
 float temp;
@@ -35,7 +28,8 @@ int qaria = 34;
 int pioggia = 1;
 
 String sendtemp, sendtemp2, sendhum, sendperc, sendpres, sendalt, sendqaria, sendpioggia, sendlat, sendlon, postData;
-String tabella = "Prova";
+String tabella = "Dati";
+String sendcodice = "Stazione_1";
 
 unsigned long tempo;
 unsigned long lettura_dati;
@@ -197,7 +191,7 @@ String misurazioni()
   sendpioggia = String(pioggia);
   
    
-  return postData = "tabella=" + tabella + "&sendtemp=" + sendtemp + "&sendtemp2=" + sendtemp2 + "&sendhum=" + sendhum + "&sendperc=" + sendperc + "&sendpres=" + sendpres + "&sendalt=" + sendalt + "&sendqaria=" + sendqaria + "&sendpioggia=" + sendpioggia;
+  return postData = "tabella=" + tabella + "&sendtemp=" + sendtemp + "&sendtemp2=" + sendtemp2 + "&sendhum=" + sendhum + "&sendperc=" + sendperc + "&sendpres=" + sendpres + "&sendalt=" + sendalt + "&sendqaria=" + sendqaria + "&sendpioggia=" + sendpioggia + "&sendcodice=" + sendcodice;
 }
 
 
