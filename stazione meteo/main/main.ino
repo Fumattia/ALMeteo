@@ -7,6 +7,8 @@
 #include <Adafruit_BMP280.h>
 
 #define DHTPIN 14     // what digital pin the DHT22 is conected to
+
+#define mq2 12     // what digital pin the mq2 is conected to
 #define DHTTYPE DHT22   // there are multiple kinds of DHT sensors
 
 #define TRIGGER_PIN 0
@@ -24,12 +26,12 @@ float hum;
 float perc;
 float pres;
 float alt;
-int qaria = 34;
+float qaria;
 int pioggia = 1;
 
 String sendtemp, sendtemp2, sendhum, sendperc, sendpres, sendalt, sendqaria, sendpioggia, sendlat, sendlon, postData;
 String tabella = "Dati";
-String sendcodice = "Stazione_1";
+String sendcodice = "Stazione_2";
 
 unsigned long tempo;
 unsigned long lettura_dati;
@@ -83,6 +85,7 @@ void setup() {
 
   // setup sensori
   dht.begin();
+  pinMode(mq2, INPUT);
   bool status;
   // default settings
   // (you can also pass in a Wire library object like &Wire2)
@@ -167,6 +170,7 @@ void sensori()
   perc = dht.computeHeatIndex(temp, hum, false);
   pres = bme.readPressure()/100.0F;
   alt = bme.readAltitude(SEALEVELPRESSURE_HPA);
+  qaria = analogRead(mq2);
   if (isnan(hum) || isnan(temp)) {
       Serial.println("Failed to read from DHT sensor!");
       temp = NULL;
