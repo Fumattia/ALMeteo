@@ -1,0 +1,25 @@
+{% extends 'ALM/common1.html' %}
+
+{% block content %}
+<div class="divtitolo">
+  <div class="titolo animated bounceInDown">
+    <a href="#ahlm" class="link-iniziale"><h1 class="display-4 fw-bold">HOME</h1></a>
+    <span class="animated bounce icon-angle-down"></span>
+  </div>
+</div>
+
+<a name="ahlm"></a>
+<div class="centra">
+  <div class="container my-2 shadow p-3 mb-5 sfondo rounded text-center">
+    <h1 class="display-6 text-light">PRESENTAZIONE PROGETTO</h1>
+    <p class="text-sm-center-light my-5 fs-5 text-break">
+      Il progetto si pone come obiettivo quello di portare un nuovo prodotto sul mercato in grado, oltre che raccogliere molteplici dati climatici da diverse zone del nostro territorio, offrendo inoltre la possibilità di  verificare la prossimità di un temporale o forti maltempi. Questo servizio è realizzato tramite il posizionamento in diverse aree del nostro territorio di molteplici stazioni meteo in modo da fornire un quadro climatico semplice e immediato. Le nostre stazioni meteo sono utili in diversi campi applicativi come la ristorazione all'aperto, i produttori di tende, gli stabilimenti balneari, ma anche privati.
+
+      </br>
+      </br>
+      <a href="{% url 'ALM:il_nostro_servizio'%}" type="button" class="btn btn-outline-light" type="submit">Scopri di più!</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
+

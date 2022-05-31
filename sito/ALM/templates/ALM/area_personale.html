@@ -1,0 +1,26 @@
+{% extends 'ALM/common2.html' %}
+
+{% block content %}
+<!-- Titolo della pagina-->
+<div class="divtitolo">
+  <div class="titolo animated bounceInDown">
+    <a href="#ahlm" class="link-iniziale"><h1 class="display-4 fw-bold">AREA PERSONALE</h1></a>
+    <span class="animated bounce icon-angle-down"></span>
+  </div>
+</div>
+
+<a name="ahlm"></a>
+<div class="centra">
+  <div class="container my-2 text-center shadow p-3 mb-5 sfondo rounded">
+    <h1 class="display-6">SCOPRI I TUOI DATI!</h1>
+    <p class="text-sm-center-light my-5 fs-5 text-break">
+      Nella tua area personale puoi vedere in tempo reale i dati inviati dalla tua stazione, lo storico dei dati registati e allerte sulla situazione meteo della tua zona!
+      </br>
+      </br>
+      <a href="{% url 'ALM:meteo_in_tempo_reale'%}" type="button" class="btn btn-outline-light" type="submit">VAI!</a>
+    </p>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'ALM/common2.html' %}
+
+{% block content %}
+<!-- Titolo della pagina-->
+<div class="divtitolo">
+  <div class="titolo animated bounceInDown">
+    <a href="#ahlm" class="link-iniziale"><h1 class="display-4 fw-bold">METEO IN TEMPO REALE</h1></a>
+    <span class="animated bounce icon-angle-down"></span>
+  </div>
+</div>
+
+<a name="ahlm"></a>
+<div class="centra">
+  {% if text %}
+  <div class="container card shadow p-3 mb-5 sfondo rounded">
+    <div class="card-header bg-transparent border-light">
+      <h1 class="display-5">Stazione di {{ text }}</h1>
+    </div>
+    {% if temp %}
+    <div class="card-header bg-transparent border-light">
+      <ul class="list-group list-group-flush bg-transparent">
+        <li class="list-group-item ">Temperatura = {{ temp }}°C</li>
+        <li class="list-group-item">Umidità = {{ hum }}%</li>
+        <li class="list-group-item">Temperatura precepita = {{ t_perc }}°C</li>
+        <li class="list-group-item">Pressione = {{ pres }} mBar</li>
+        <li class="list-group-item">Altitudine = {{ alt }} m.s.l</li>
+      </ul>
+    </div>
+    <div class="card-footer bg-transparent border-light text-center">
+      <p class="">Ultimo aggiornamento: {{ date }} {{ time }} </p>
+    </div>
+    {% else %}
+    <p class="text-sm-center my-5 fs-5 text-break">
+      Dati non presenti per questa stazione, controlla l'alimetazione e la connessione a internet
+    </p>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="container my-2 text-center shadow p-3 mb-5 bg-body rounded">
+    <h1 class="display-6 text-dark">Nessuna stazione disponibile</h1>
+    <p class="text-sm-center my-5 fs-5 text-break">
+      Non hai ancora una stazione?
+      </br>
+      </br>
+      <a href="{% url 'ALM:il_nostro_servizio'%}" type="button" class="btn btn-outline-primary" type="submit">Ordinala Ora!</a>
+    </p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

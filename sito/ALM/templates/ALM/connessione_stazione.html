@@ -1,0 +1,49 @@
+{% extends 'ALM/common1.html' %}
+
+{% block content %}
+<div class="divtitolo">
+  <div class="titolo animated bounceInDown">
+    <a href="#ahlm" class="link-iniziale"><h1 class="display-4 fw-bold">COLLEGA STAZIONE</h1></a>
+    <span class="animated bounce icon-angle-down"></span>
+  </div>
+</div>
+
+<a name="ahlm"></a>
+<div class="centra">
+  <div class="container my-2 text-center-light shadow p-3 mb-5 sfondo rounded" >
+    <h1 class="display-6"></h1>
+    <form action="{% url 'ALM:connessione_stazione' %}" method="post">
+        {% csrf_token %}
+        <div class="col-md-20 col-md-offset-20">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Inserisci i dati della stazione</h3></div>
+                <div class="container text-center panel-body">
+                    {% if error_message %}
+                        <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+                    <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input name="posizione" value="" placeholder="posizione" type="text" class="form-control">
+                    </div>
+                    <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input name="codice" value="" placeholder="codice" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-15 col-md-offset-4">
+                        <input name="login" type="submit" value="Connetti" class="login_btn" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <p class="text-sm-center my-5 fs-5 text-break">
+    </p>
+  </div>
+
+</div>
+{% endblock %}

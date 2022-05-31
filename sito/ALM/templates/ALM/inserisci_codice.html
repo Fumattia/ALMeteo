@@ -1,0 +1,35 @@
+{% extends 'ALM/common3.html' %}
+
+{% block content %}
+<div class="centra">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Inserisci il codice di conferma</h3>
+			</div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" action="{% url 'ALM:inserisci_codice' %}" method="post">
+                {% csrf_token %}
+                <div class="container text-center panel-heading my-3">
+                    {% if error_message %}
+                    <p class="error rounded p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+                </div>
+                <p class="text-sm-center my-2 fs-5 text-break">
+                        Controlla il tuo indirizzo di posta elettronica ({{ mail }}) e inserisci qui sotto il codice che ti abbiamo inviato
+                </p>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-code"></i></span>
+                    </div>
+                    <input name="codice" value="" placeholder="codice (ex: gZf91Pxe)" type="text" class="form-control">
+                </div>
+                <div class="col-12 text-center my-5">
+                    <input name="login" type="submit" value="Invia" class="login_btn" />
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

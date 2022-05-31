@@ -1,0 +1,63 @@
+{% extends 'ALM/common3.html' %}
+
+{% block content %}
+<div class="centra">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Accedi</h3>
+			</div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" action="{% url 'ALM:login' %}" method="post">
+                {% csrf_token %}
+                <div class="container text-center panel-heading my-3">
+                    {% if error_message %}
+                    <p class="error rounded p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input name="username" value="" placeholder="username" type="text" class="form-control">
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input name="password" type="password" placeholder="password" id="pwd" class="form-control" aria-describedby="inputGroupPrepend" />
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" onclick="showPwd()">
+                          {% load static %}
+                          <img src="{% static 'ALM/mostra_pass.png'%}" alt="" width="25" height="25" class="d-inline-block align-text-top rounded">
+                        </span>
+                    </div>
+                    <script>
+                          function showPwd() {
+                            var input = document.getElementById('pwd');
+                            if (input.type === "password") {
+                              input.type = "text";
+                            } else {
+                              input.type = "password";
+                            }
+                          }
+                    </script>
+                </div>
+                <div class="row align-items-center remember">
+                    <input type="checkbox">Remember Me
+                </div>
+                <div class="form-group">
+                    <input name="login" type="submit" value="Accedi" class="login_btn float-right" />
+                </div>
+            </form>
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links">
+                    <a type="button" class="login_btn" type="submit" href="{% url 'ALM:user_register'%}">Registrati</a>
+                    <a type="button" class="recupera_pass" type="submit"  href="{% url 'ALM:recupera_password'%}">Recupera password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

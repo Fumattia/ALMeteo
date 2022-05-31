@@ -1,0 +1,78 @@
+{% extends 'ALM/common2.html' %}
+
+{% block content %}
+<!-- Titolo della pagina-->
+<div class="divtitolo">
+  <div class="titolo animated bounceInDown">
+    <a href="#ahlm" class="link-iniziale"><h1 class="display-4 fw-bold">STORICO DEI DATI</h1></a>
+    <span class="animated bounce icon-angle-down"></span>
+  </div>
+</div>
+
+<a name="ahlm"></a>
+<div class="centra">
+  <div class="container my-2 text-center shadow p-3 mb-5 sfondo rounded text-light">
+    <h1 class="display-6">ordina dati</h1>
+    <form class="row g-3 needs-validation" action="{% url 'ALM:storico_dei_dati' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-3">
+                <label for="{{ form.data.id_for_label }}" class="col-md-4 control-label text-right">Data:</label>
+                <div class="col-md-15">
+                    {{ form.data }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="{{ form.ora.id_for_label }}" class="col-md-4 control-label text-right">Ora:</label>
+                <div class="col-md-15">
+                    {{ form.ora }}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="{{ form.luogo.id_for_label }}" class="col-md-4 control-label text-right">Luogo:</label>
+                <div class="col-md-15">
+                    {{ form.luogo }}
+                </div>
+            </div>
+
+            <div class="col-16 text-center">
+                <input type="submit" value="Ricerca" class="btn btn-outline-light">
+            </div>
+        </form>
+    <div class="table-responsive my-3">
+      <table class="table table-striped table-bordered bg-light">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Temperatura</th>
+            <th scope="col">Temperatura</th>
+            <th scope="col">Umidità</th>
+            <th scope="col">Temperatura percepita</th>
+            <th scope="col">Pressione</th>
+            <th scope="col">Altitudine</th>
+            <th scope="col">Q aria</th>
+            <th scope="col">Data</th>
+            <th scope="col">Ora</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for riga in dati %}
+          <tr>
+            <th scope="row">{{ riga.0 }}</th>
+            <td>{{ riga.1 }}</td>
+            <td>{{ riga.2 }}</td>
+            <td>{{ riga.3 }}</td>
+            <td>{{ riga.4 }}</td>
+            <td>{{ riga.5 }}</td>
+            <td>{{ riga.6 }}</td>
+            <td>{{ riga.7 }}</td>
+            <td>{{ riga.10 }}</td>
+            <td>{{ riga.11 }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

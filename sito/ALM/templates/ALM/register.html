@@ -1,0 +1,77 @@
+{% extends 'ALM/common3.html' %}
+
+{% block content %}
+<div class="centra">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card_reg">
+            <div class="card-header">
+                <h3>Registrati</h3>
+            </div>
+        <div class="card-body">
+            <form class="row g-3 needs-validation" action="{% url 'ALM:user_register' %}" method="post">
+                {% csrf_token %}
+                <div class="container text-center panel-heading my-3">
+                    {% if error_message %}
+                    <p class="error rounded p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-3">
+                    <label for="{{ form.username.id_for_label }}" class="col-md-4 control-label text-right">Username<span class="text-danger">*</span>:</label>
+                    <div class="col-md-15">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="{{ form.email.id_for_label }}" class="col-md-4 control-label text-right">Email<span class="text-danger">*</span>:</label>
+                    <div class="col-md-15">
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="{{ form.password.id_for_label }}" class="col-md-4 control-label text-right">Password<span class="text-danger">*</span>:</label>
+                    <div class="col-md-15">
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="{{ form.password_repeat.id_for_label }}" class="col-md-8 control-label text-right">Conferma password:</label>
+                    <div class="col-md-15">
+                        {{ form.password_repeat }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="{{ form.first_name.id_for_label }}" class="col-md-4 control-label text-right">Nome:</label>
+                    <div class="col-md-15">
+                        {{ form.first_name }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="{{ form.last_name.id_for_label }}" class="col-md-4 control-label text-right">Cognome:</label>
+                    <div class="col-md-15">
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="{{ form.phone_number.id_for_label }}" class="col-md-8 control-label text-right">Numero di telefono:</label>
+                    <div class="col-md-15">
+                        {{ form.phone_number }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Accetta termini e condizioni
+                        </label>
+                    </div>
+                </div>
+                <div class="col-16 text-center">
+                    <input type="submit" value="Registrati" class="login_btn">
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}
